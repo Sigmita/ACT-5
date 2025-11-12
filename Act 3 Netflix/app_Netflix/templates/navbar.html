@@ -1,0 +1,63 @@
+<!-- app_Netflix/templates/navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'inicio_netflix' %}">
+            <i class="bi bi-display-fill me-2"></i>Sistema de Administración Netflix
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'inicio_netflix' %}">
+                        <i class="bi bi-house-door-fill me-1"></i>Inicio
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarUsuariosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-people-fill me-1"></i>Usuarios
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarUsuariosDropdown">
+                        <li><a class="dropdown-item" href="{% url 'agregar_usuario' %}">Agregar Usuario</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_usuarios' %}">Ver Usuarios</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    {# Sección de Películas ahora funcional #}
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarPeliculasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-film me-1"></i>Películas
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarPeliculasDropdown">
+                        <li><a class="dropdown-item" href="{% url 'agregar_pelicula' %}">Agregar Película</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_peliculas' %}">Ver Películas</a></li>
+                        <!-- Los botones de actualizar y borrar se manejarán desde la tabla de ver películas -->
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    {# Sección de Listas de Favoritos sigue siendo decorativa #}
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarListasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-list-stars me-1"></i>Listas de Favoritos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarListasDropdown">
+                        <li><a class="dropdown-item" href="#" onclick="return false;">Agregar a Lista (Pendiente)</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="return false;">Ver Listas (Pendiente)</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="return false;">Actualizar Lista (Pendiente)</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="return false;">Borrar de Lista (Pendiente)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- app_Netflix/templates/navbar.html -->
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarListasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-list-stars me-1"></i>Listas de Favoritos
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarListasDropdown">
+        <li><a class="dropdown-item" href="{% url 'agregar_lista_favoritos' %}">Agregar a Lista</a></li>
+        <li><a class="dropdown-item" href="{% url 'ver_listas_favoritos' %}">Ver Listas</a></li>
+        <!-- Los botones de actualizar y borrar se manejarán desde la tabla de ver listas -->
+    </ul>
+</li>

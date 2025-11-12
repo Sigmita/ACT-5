@@ -1,0 +1,59 @@
+<!-- app_Netflix/templates/lista_favoritos/actualizar_lista_favoritos.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm p-4">
+                <h2 class="mb-4 text-center text-primary">Actualizar Elemento de Lista de Favoritos</h2>
+                <form method="post" action="{% url 'realizar_actualizacion_lista_favoritos' lista.id %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="categoria_lista" class="form-label">Categoría de Lista:</label>
+                        <input type="number" class="form-control" id="categoria_lista" name="categoria_lista" value="{{ lista.categoria_lista }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Usuario:</label>
+                        <select class="form-select" id="usuario" name="usuario" required>
+                            <option value="">Seleccione un Usuario</option>
+                            {% for usuario in usuarios %}
+                                <option value="{{ usuario.id_usuario }}" {% if usuario == lista.usuario %}selected{% endif %}>
+                                    {{ usuario.nombre }} {{ usuario.apellido }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pelicula" class="form-label">Película:</label>
+                        <select class="form-select" id="pelicula" name="pelicula" required>
+                            <option value="">Seleccione una Película</option>
+                            {% for pelicula in peliculas %}
+                                <option value="{{ pelicula.id_pelicula }}" {% if pelicula == lista.pelicula %}selected{% endif %}>
+                                    {{ pelicula.titulo }} ({{ pelicula.ano_lanzamiento }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="orden_en_lista" class="form-label">Orden en Lista:</label>
+                        <input type="number" class="form-control" id="orden_en_lista" name="orden_en_lista" value="{{ lista.orden_en_lista }}" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="visto_en_lista" name="visto_en_lista" {% if lista.visto_en_lista %}checked{% endif %}>
+                        <label class="form-check-label" for="visto_en_lista">Vista en Lista</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="notas_personales" class="form-label">Notas Personales:</label>
+                        <textarea class="form-control" id="notas_personales" name="notas_personales" rows="3">{{ lista.notas_personales }}</textarea>
+                    </div>
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Guardar Cambios</button>
+                        <a href="{% url 'ver_listas_favoritos' %}" class="btn btn-outline-secondary btn-lg">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

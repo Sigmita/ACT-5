@@ -1,0 +1,25 @@
+<!-- app_Netflix/templates/lista_favoritos/borrar_lista_favoritos.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-danger shadow-sm p-4">
+                <h2 class="mb-4 text-center text-danger">Confirmar Eliminación de Elemento de Lista</h2>
+                <div class="alert alert-warning text-center" role="alert">
+                    ¿Estás seguro de que deseas eliminar la película **"{{ lista.pelicula.titulo }}"** de la lista de **{{ lista.usuario.nombre }} {{ lista.usuario.apellido }}**?
+                    ¡Esta acción no se puede deshacer!
+                </div>
+                <form method="post" action="{% url 'borrar_lista_favoritos' lista.id %}">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-danger btn-lg">Sí, Eliminar de Lista</button>
+                        <a href="{% url 'ver_listas_favoritos' %}" class="btn btn-outline-secondary btn-lg">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

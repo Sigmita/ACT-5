@@ -1,0 +1,49 @@
+<!-- app_Netflix/templates/pelicula/actualizar_pelicula.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm p-4">
+                <h2 class="mb-4 text-center text-primary">Actualizar Película</h2>
+                <form method="post" action="{% url 'realizar_actualizacion_pelicula' pelicula.id_pelicula %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Título:</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo" value="{{ pelicula.titulo }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ano_lanzamiento" class="form-label">Año de Lanzamiento:</label>
+                        <input type="number" class="form-control" id="ano_lanzamiento" name="ano_lanzamiento" value="{{ pelicula.ano_lanzamiento }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="genero" class="form-label">Género:</label>
+                        <input type="text" class="form-control" id="genero" name="genero" value="{{ pelicula.genero }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="clasificacion_edad" class="form-label">Clasificación de Edad:</label>
+                        <input type="text" class="form-control" id="clasificacion_edad" name="clasificacion_edad" value="{{ pelicula.clasificacion_edad }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="duracion_minutos" class="form-label">Duración (minutos):</label>
+                        <input type="number" class="form-control" id="duracion_minutos" name="duracion_minutos" value="{{ pelicula.duracion_minutos }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="director" class="form-label">Director:</label>
+                        <input type="text" class="form-control" id="director" name="director" value="{{ pelicula.director }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="idioma_original" class="form-label">Idioma Original:</label>
+                        <input type="text" class="form-control" id="idioma_original" name="idioma_original" value="{{ pelicula.idioma_original }}" required>
+                    </div>
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Guardar Cambios</button>
+                        <a href="{% url 'ver_peliculas' %}" class="btn btn-outline-secondary btn-lg">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

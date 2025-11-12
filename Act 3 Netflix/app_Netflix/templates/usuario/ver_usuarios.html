@@ -1,0 +1,60 @@
+<!-- app_Netflix/templates/usuario/ver_usuarios.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4 text-center text-primary">Gestión de Usuarios</h2>
+
+    <div class="text-end mb-3">
+        <a href="{% url 'agregar_usuario' %}" class="btn btn-success">
+            <i class="bi bi-person-plus-fill me-2"></i>Agregar Nuevo Usuario
+        </a>
+    </div>
+
+    {% if usuarios %}
+    <div class="table-responsive">
+        <table class="table table-hover table-striped shadow-sm">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Membresía</th>
+                    <th scope="col">País</th>
+                    <th scope="col">Registro</th>
+                    <th scope="col">Último Acceso</th>
+                    <th scope="col" class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.id_usuario }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.apellido }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.tipo_membresia }}</td>
+                    <td>{{ usuario.pais }}</td>
+                    <td>{{ usuario.fecha_registro|date:"d M Y" }}</td>
+                    <td>{{ usuario.ultimo_acceso|date:"d M Y H:i" }}</td>
+                    <td class="text-center">
+                        <a href="{% url 'actualizar_usuario' usuario.id_usuario %}" class="btn btn-info btn-sm me-2" title="Editar">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="{% url 'borrar_usuario' usuario.id_usuario %}" class="btn btn-danger btn-sm" title="Eliminar">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info text-center mt-5" role="alert">
+        No hay usuarios registrados. ¡Anímate a agregar el primero!
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

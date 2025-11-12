@@ -1,0 +1,37 @@
+<!-- app_Netflix/templates/inicio.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center py-5">
+    <h1 class="display-4 mb-4 text-primary">Bienvenido al Sistema de Administración Netflix</h1>
+    <p class="lead mb-5">Gestiona usuarios, películas y listas de favoritos de manera eficiente.</p>
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-5">
+                <div class="card-body p-4">
+                    <h5 class="card-title text-secondary mb-3">Información General del Sistema</h5>
+                    <p class="card-text text-start">
+                        Este sistema te permite llevar un control detallado de los usuarios suscritos, el catálogo de películas disponible y las listas personalizadas de favoritos.
+                        Actualmente, la sección de administración de usuarios está completamente funcional, permitiendo agregar, ver, actualizar y eliminar registros de usuarios.
+                        Las secciones de películas y listas de favoritos están en desarrollo y se integrarán próximamente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h2 class="mb-4 text-primary">¡Disfruta la experiencia!</h2>
+            <p class="lead">Explora las funcionalidades y mantente al tanto de las novedades.</p>
+            
+            <div class="mt-5">
+                <!-- Imagen alusiva a Netflix -->
+                <img src="https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2021/06/Netflix-descargas-1.jpg" class="img-fluid rounded shadow" alt="Netflix Admin" style="max-height: 400px; object-fit: cover;">
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

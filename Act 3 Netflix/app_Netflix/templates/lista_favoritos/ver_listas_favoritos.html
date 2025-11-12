@@ -1,0 +1,60 @@
+<!-- app_Netflix/templates/lista_favoritos/ver_listas_favoritos.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4 text-center text-primary">Gestión de Listas de Favoritos</h2>
+
+    <div class="text-end mb-3">
+        <a href="{% url 'agregar_lista_favoritos' %}" class="btn btn-success">
+            <i class="bi bi-plus-circle-fill me-2"></i>Agregar a Lista
+        </a>
+    </div>
+
+    {% if listas %}
+    <div class="table-responsive">
+        <table class="table table-hover table-striped shadow-sm">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">ID Lista</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Película</th>
+                    <th scope="col">Fecha Adición</th>
+                    <th scope="col">Orden</th>
+                    <th scope="col">Visto</th>
+                    <th scope="col">Notas</th>
+                    <th scope="col" class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lista in listas %}
+                <tr>
+                    <td>{{ lista.id }}</td> {# Asumiendo 'id' como PK #}
+                    <td>{{ lista.categoria_lista }}</td>
+                    <td>{{ lista.usuario.nombre }} {{ lista.usuario.apellido }}</td>
+                    <td>{{ lista.pelicula.titulo }}</td>
+                    <td>{{ lista.fecha_adicion|date:"d M Y" }}</td>
+                    <td>{{ lista.orden_en_lista }}</td>
+                    <td>{% if lista.visto_en_lista %}<i class="bi bi-check-circle-fill text-success"></i>{% else %}<i class="bi bi-x-circle-fill text-danger"></i>{% endif %}</td>
+                    <td>{{ lista.notas_personales|default:"N/A" }}</td>
+                    <td class="text-center">
+                        <a href="{% url 'actualizar_lista_favoritos' lista.id %}" class="btn btn-info btn-sm me-2" title="Editar">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="{% url 'borrar_lista_favoritos' lista.id %}" class="btn btn-danger btn-sm" title="Eliminar">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info text-center mt-5" role="alert">
+        No hay elementos en listas de favoritos. ¡Anímate a agregar el primero!
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

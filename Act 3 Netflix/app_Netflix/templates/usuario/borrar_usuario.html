@@ -1,0 +1,25 @@
+<!-- app_Netflix/templates/usuario/borrar_usuario.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-danger shadow-sm p-4">
+                <h2 class="mb-4 text-center text-danger">Confirmar Eliminación</h2>
+                <div class="alert alert-warning text-center" role="alert">
+                    ¿Estás seguro de que deseas eliminar al usuario **{{ usuario.nombre }} {{ usuario.apellido }}** ({{ usuario.email }})?
+                    ¡Esta acción no se puede deshacer!
+                </div>
+                <form method="post" action="{% url 'borrar_usuario' usuario.id_usuario %}">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-danger btn-lg">Sí, Eliminar</button>
+                        <a href="{% url 'ver_usuarios' %}" class="btn btn-outline-secondary btn-lg">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
